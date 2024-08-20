@@ -1,11 +1,10 @@
 const TelegramBot = require('node-telegram-bot-api')
-const token = '7223416937:AAFDeA4PH1lh38W7JdKg6SULMwFm92wcheY' // Замените на ваш реальный токен
+const token = '7483176886:AAEdc3z3oh-_9ht_f_R85gV2EKh4cOKvenw'
 const bot = new TelegramBot(token, { polling: true })
 
 bot.onText(/\/start/, (msg) => {
 	const chatId = msg.chat.id
-	const webAppUrl = 'https://zingan.dev' // URL вашего веб-приложения
-
+	const webAppUrl = 'https://zingan.tech'
 	bot.sendMessage(chatId, 'Запуск веб-приложения', {
 		reply_markup: {
 			inline_keyboard: [
