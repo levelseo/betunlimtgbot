@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Задания</title>
+		<link rel="stylesheet" href="css/styles.css" />
+	</head>
+	<body>
+		<div id="app">
+			<img src="./img/logo.svg" class="logo" />
+			<h1>Invite Friends</h1>
+			<div>
+				<p style="color: #fff">
+					Copy your referral link and share with friends. For each registration
+					via the link you will receive 200 points.
+				</p>
+				<input type="text" id="referral-link" readonly />
+				<button onclick="copyReferralLink()">Copy link</button>
+			</div>
+			<nav>
+				<a href="/">
+					<img src="../public/img/home.svg" alt="" />
+					Home
+				</a>
+				<a href="/play">
+					<img src="../public/img/game.svg" alt="" />
+					Game
+				</a>
+				<a href="/tasks">
+					<img src="../public/img/task.svg" alt="" />
+					Tasks
+				</a>
+				<a href="/shop">
+					<img src="../public/img/shop.svg" alt="" />
+					Shop
+				</a>
+			</nav>
+		</div>
+		<script src="js/friends.js"></script>
+	</body>
+</html>

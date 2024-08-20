@@ -6,11 +6,33 @@ const app = express()
 app.use(bodyParser.json())
 app.use(express.static('public'))
 
-// Функция регистрации пользователя
+app.get('/', (req, res) => {
+	res.sendFile(__dirname + '/public/index.html')
+})
+
+app.get('/play', (req, res) => {
+	res.sendFile(__dirname + '/public/play.html')
+})
+
+app.get('/tasks', (req, res) => {
+	res.sendFile(__dirname + '/public/tasks.html')
+})
+
+app.get('/friends', (req, res) => {
+	res.sendFile(__dirname + '/public/friends.html')
+})
+
+app.get('/shop', (req, res) => {
+	res.sendFile(__dirname + '/public/shop.html')
+})
+
+// Маршрут для регистрации с проверкой реферальной ссылки
 app.post('/register', (req, res) => {
-	const { telegramId } = req.body
+	const { telegramId, referrerId } = req.body
+
+	// Регистрируем нового пользователя
 	db.run(
-		'INSERT INTO users (telegram_id, points) VALUES (?, 500)',
+		'INSERT INTO users (telegram_id, points, games_left) VALUES (?, 500, 3)',
 		[telegramId],
 		function (err) {
 			if (err) {
@@ -23,6 +45,19 @@ app.post('/register', (req, res) => {
 				}
 			} else {
 				res.json({ success: true })
+
+				// Если есть реферальная ссылка, добавляем 200 поинтов пригласившему
+				if (referrerId) {
+					db.run(
+						'UPDATE users SET points = points + 200 WHERE telegram_id = ?',
+						[referrerId],
+						function (err) {
+							if (err) {
+								console.error(err)
+							}
+						}
+					)
+				}
 			}
 		}
 	)
@@ -47,6 +82,24 @@ app.post('/points', (req, res) => {
 	)
 })
 
-app.listen(3000, () => {
-	console.log('Server is running on http://localhost:3000')
+// Функция получения награды
+app.post('/claim-reward', (req, res) => {
+	const { telegramId, reward } = req.body
+	db.run(
+		'UPDATE users SET points = points + ? WHERE telegram_id = ?',
+		[reward, telegramId],
+		function (err) {
+			if (err) {
+				console.error(err)
+				res.status(500).json({ success: false, error: err.message })
+			} else {
+				res.json({ success: true })
+			}
+		}
+	)
+})
+
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
+	console.log(`Server is running on http://localhost:${PORT}`)
 })

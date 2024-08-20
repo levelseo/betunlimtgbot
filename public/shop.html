@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Задания</title>
+		<link rel="stylesheet" href="css/styles.css" />
+	</head>
+	<body>
+		<div id="app">
+			<img src="./img/logo.svg" class="logo" />
+			<h1>Shop</h1>
+			<div id="shop-items">
+				<div class="shop-item" data-cost="1000" data-promo="PROMO100">
+					<div class="shop-info">
+						Bonanza 100 FS
+						<span>Price: <img src="../public/img/bpop.svg" alt="" /> 1000</span>
+					</div>
+					<button class="shop-button" onclick="buyItem(this)">Buy</button>
+				</div>
+				<div class="shop-item" data-cost="1000" data-promo="PROMO200">
+					<div class="shop-info">
+						Bonanza 100 FS
+						<span>Price: <img src="../public/img/bpop.svg" alt="" /> 2000</span>
+					</div>
+					<button class="shop-button" onclick="buyItem(this)">Buy</button>
+				</div>
+				<div class="shop-item" data-cost="1000" data-promo="PROMO300">
+					<div class="shop-info">
+						Bonanza 100 FS
+						<span>Price: <img src="../public/img/bpop.svg" alt="" /> 3000</span>
+					</div>
+					<button class="shop-button" onclick="buyItem(this)">Buy</button>
+				</div>
+			</div>
+			<nav>
+				<a href="/">
+					<img src="../public/img/home.svg" alt="" />
+					Home
+				</a>
+				<a href="/play">
+					<img src="../public/img/game.svg" alt="" />
+					Game
+				</a>
+				<a href="/friends">
+					<img src="../public/img/frens.svg" alt="" />
+					Frens
+				</a>
+				<a href="/shop">
+					<img src="../public/img/shop.svg" alt="" />
+					Shop
+				</a>
+			</nav>
+		</div>
+		<script src="js/shop.js"></script>
+	</body>
+</html>
